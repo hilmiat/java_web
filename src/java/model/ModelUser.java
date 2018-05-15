@@ -6,6 +6,8 @@
 package model;
 
 import entity.User;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -43,9 +46,21 @@ public class ModelUser {
             //cari di db
             Koneksi koneksi = new Koneksi();
             Connection con = koneksi.getKoneksi();
-            String sql = "SELECT * FROM user WHERE email = ?";
+            String sql = "SELECT * FROM user WHERE email = ? and password = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,email);
+            MessageDigest md;
+            String passhash = "";
+            try {
+                md = MessageDigest.getInstance("md5");
+                md.update(pass.getBytes());
+                byte[] digest = md.digest();
+                passhash = DatatypeConverter.printHexBinary(digest);
+            } catch (NoSuchAlgorithmException ex) {
+                
+            }
+            
+            ps.setString(2,passhash);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 user = new User();
@@ -53,8 +68,10 @@ public class ModelUser {
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 user.setFullname(rs.getString("fullname"));
+                System.out.println("Sukses login sebagai "+user.getEmail());
             }else{
                 user = null;
+                System.out.println("Gagal Login");
             }
             
         } catch (SQLException ex) {

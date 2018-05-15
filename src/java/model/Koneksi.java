@@ -31,7 +31,10 @@ public class Koneksi {
             String url = "jdbc:mysql://"+dbhost+":3306/"+dbname;
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url,dbuser,dbpass);
+            System.out.println("Koneksi Sukses");
         } catch (Exception ex) {
+            System.out.println("Koneksi Gagal");
+            ex.printStackTrace();
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
         }
         

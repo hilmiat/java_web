@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.ModelUser;
 
 /**
@@ -61,8 +62,16 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+            String action = request.getParameter("action");
+            if(action!=null&&action.equals("logout")){
+                request.getSession().invalidate();
+            }
+            String halaman = "/pages/login.jsp";      
+            if(action!=null&&action.equals("register")){
+                halaman = "/pages/register.jsp";
+            }
             RequestDispatcher rd = 
-                    getServletContext().getRequestDispatcher("/pages/login.jsp");
+                    getServletContext().getRequestDispatcher(halaman);
             rd.include(request, response);
     }
 
@@ -84,13 +93,21 @@ public class Login extends HttpServlet {
         ModelUser muser = new ModelUser();
         User user = muser.auth(username, password);
         if(user!=null){
-            request.setAttribute("user",user);
-            rd = getServletContext().getRequestDispatcher("/Dashboard");
+            HttpServletRequest pageContext = request;
+            HttpSession session = pageContext.getSession();
+//            HttpSession session = request.getSession();
+            session.setAttribute("user",user);
+
+            response.sendRedirect(request.getContextPath()+"/Dashboard");
+//            request.setAttribute("user",user);
+//            rd = getServletContext().getRequestDispatcher("/Dashboard");
         }else{
             request.setAttribute("message","Username atau password salah");
             rd = getServletContext().getRequestDispatcher("/pages/login.jsp");
+            rd.forward(request, response);
         }
-        rd.forward(request, response);
+        
+        
     }
 
     /**

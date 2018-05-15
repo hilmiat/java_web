@@ -1,5 +1,5 @@
 <%-- 
-    Document   : login
+    Document   : register
     Created on : May 14, 2018, 11:12:01 AM
     Author     : hilmiat
 --%>
@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Signin</title>
+    <title>Register</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.css" rel="stylesheet">
@@ -33,23 +33,27 @@
               <%=msg%>
             </div>
         <%}%>
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Register User</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" 
              placeholder="Email address" required autofocus name="username">
+       
+      <label for="fullname" class="sr-only">Fullname</label>
+      <input type="text" id="fullname" class="form-control" 
+             placeholder="Fullname" required name="fullname">
       
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" 
              placeholder="Password" required name="password">
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <a href="${pageContext.request.contextPath}/Login?action=register">
+  
+      <label for="inputPasswordRepeat" class="sr-only">Repeat Password</label>
+      <input type="password" id="inputPasswordRepeat" class="form-control" 
+             placeholder="Password Repeat" required name="passwordrepeat">
+      
+      <button class="btn btn-lg btn-primary btn-block" type="submit">
           Register
-      </a>
+      </button>
+    
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
   </body>

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,8 +62,16 @@ public class Dashboard extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
            //title
+           
+           User u = (User)request.getSession().getAttribute("user");
+           if(u==null){
+               getServletContext().getRequestDispatcher("/Login")
+                       .forward(request, response);
+           }
+           request.setAttribute("user", u);
+           
            request.setAttribute("title", "Dashboard");
-           request.setAttribute("contentpage","/newjsp.jsp");
+           request.setAttribute("contentpage","/pages/dashboard.jsp");
            RequestDispatcher rd = 
                    getServletContext().getRequestDispatcher("/pages/admin.jsp");
            rd.include(request, response);
