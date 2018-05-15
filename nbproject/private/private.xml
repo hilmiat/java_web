@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/model/Koneksi.java</file>
-            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/newjsp.jsp</file>
-            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/Login.java</file>
-            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/entity/User.java</file>
-            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/index.html</file>
-            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/model/ModelUser.java</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/pages/admin.jsp</file>
             <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/pages/login.jsp</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/Login.java</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/model/ModelUser.java</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/newjsp.jsp</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/pages/dashboard.jsp</file>
             <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/Dashboard.java</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/entity/User.java</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/src/java/model/Koneksi.java</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/index.html</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/template/header.jsp</file>
+            <file>file:/home/hilmiat/NetBeansProjects/My%20Web%20App/web/pages/register.jsp</file>
         </group>
     </open-files>
 </project-private>
