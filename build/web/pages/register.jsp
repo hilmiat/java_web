@@ -50,6 +50,8 @@
       <input type="password" id="inputPasswordRepeat" class="form-control" 
              placeholder="Password Repeat" required name="passwordrepeat">
       
+      <input type="hidden" name="action" value="register"/>
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">
           Register
       </button>

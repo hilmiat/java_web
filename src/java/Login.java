@@ -89,8 +89,29 @@ public class Login extends HttpServlet {
 //        processRequest(request, response);
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        RequestDispatcher rd;
+        
         ModelUser muser = new ModelUser();
+        
+        String action = request.getParameter("action");
+        System.out.println("Login.doPost()-->action:"+action);
+        if(action!=null && action.equals("register")){
+            System.out.println("Login.doPost()-->action:"+action);
+            String fullname = request.getParameter("fullname");
+            String repeatpassword = request.getParameter("passwordrepeat");
+            //cek password
+            if(password.equals(repeatpassword)){
+                //register data
+                System.out.println("Register data");
+                User user_baru = new User();
+                user_baru.setEmail(username);
+                user_baru.setFullname(fullname);
+                user_baru.setPassword(password);
+                muser.register(user_baru);
+            }
+        }
+        
+        RequestDispatcher rd;
+//        ModelUser muser = new ModelUser();
         User user = muser.auth(username, password);
         if(user!=null){
             HttpServletRequest pageContext = request;
