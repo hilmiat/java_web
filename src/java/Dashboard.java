@@ -7,6 +7,7 @@
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ModelUser;
 
 /**
  *
@@ -69,6 +71,9 @@ public class Dashboard extends HttpServlet {
                        .forward(request, response);
            }
            request.setAttribute("user", u);
+           
+           List<User> data = new ModelUser().getAllUser();
+           request.setAttribute("users", data);
            
            request.setAttribute("title", "Dashboard");
            request.setAttribute("contentpage","/pages/dashboard.jsp");

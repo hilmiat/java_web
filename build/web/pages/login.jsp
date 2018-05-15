@@ -29,9 +29,9 @@
        
         <% String msg = (String)request.getAttribute("message"); %>
         <%if(msg!=null){%>
-            <div class="alert alert-danger" role="alert">
-              <%=msg%>
-            </div>
+        <div class="alert alert-danger" role="alert">
+          <%=msg%>
+        </div>
         <%}%>
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>

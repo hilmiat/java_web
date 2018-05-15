@@ -87,6 +87,9 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        String page="";
+        String msg="";
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
@@ -107,6 +110,10 @@ public class Login extends HttpServlet {
                 user_baru.setFullname(fullname);
                 user_baru.setPassword(password);
                 muser.register(user_baru);
+            }else{
+                //jika pass repeat tidak sama
+                msg = "Password tidak sama";
+                page = "/pages/register.jsp";
             }
         }
         
@@ -123,8 +130,10 @@ public class Login extends HttpServlet {
 //            request.setAttribute("user",user);
 //            rd = getServletContext().getRequestDispatcher("/Dashboard");
         }else{
-            request.setAttribute("message","Username atau password salah");
-            rd = getServletContext().getRequestDispatcher("/pages/login.jsp");
+            msg = "Username atau password salah";
+            page = "/pages/login.jsp";
+            request.setAttribute("message",msg);
+            rd = getServletContext().getRequestDispatcher(page);
             rd.forward(request, response);
         }
         

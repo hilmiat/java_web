@@ -28,7 +28,17 @@ public class ModelUser {
      */
     public List<User> getAllUser(){
         List<User> data = new ArrayList<User>();
-        //query ke db
+        try{
+            String sql = "select * from user";
+            Connection con = new Koneksi().getKoneksi();
+            ResultSet rs = con.createStatement().executeQuery(sql);
+            while(rs.next()){
+                User u = rsToUser(rs);
+                data.add(u);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return data;
     }
     /**
@@ -63,11 +73,12 @@ public class ModelUser {
             ps.setString(2,passhash);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                user = new User();
-                user.setId(rs.getInt("id"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                user.setFullname(rs.getString("fullname"));
+//                user = new User();
+//                user.setId(rs.getInt("id"));
+//                user.setEmail(rs.getString("email"));
+//                user.setPassword(rs.getString("password"));
+//                user.setFullname(rs.getString("fullname"));
+                user = rsToUser(rs);
                 System.out.println("Sukses login sebagai "+user.getEmail());
             }else{
                 user = null;
@@ -114,5 +125,20 @@ public class ModelUser {
                 
             }
         return passhash;
+    }
+    
+    public User rsToUser(ResultSet rs){
+        User user = new User();
+        try {
+            
+            user.setId(rs.getInt("id"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setFullname(rs.getString("fullname"));
+            return user;
+        } catch (SQLException ex) {
+            
+        }
+        return user;
     }
 }
